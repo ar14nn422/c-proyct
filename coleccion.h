@@ -1,82 +1,81 @@
-#ifndef COLECCIONFACTURA_H
-#define COLECCIONFACTURA_H
-#include "FACTURA.h"
-#include<sstream>
-class coleccion{
-private:
-	factura vector[40];
-	int tamano;
-	int facturas;
-public:
-	coleccion(){
-		tamano=40;
-		facturas=0;
-	}
-	coleccion(int pTam){//constructor con parámtros, inicializa
-		if(pTam>0 && pTam<=40){
-		tamano=pTam;
-		facturas=0;
-		}
-	}
-	void setFacturas(int i){
-		vector[i]=vector[i];
-	}
+#ifndef COLECCION_H
+#define COLECCION_H
+#include "VIAJE.h"
+using namespace std; 
 
-	float getTamano(){
-		return tamano;
+class Coleccion{
+private:
+	viaje vector[310];
+	int viajes;
+	int Cantidad;
+public:
+	Coleccion(){//constructor
+		viajes =310;
+		Cantidad =0;
 	}
-	int getFacturas(){
-		return facturas;
+	Coleccion(int pviajes){
+		if(pviajes>0 && pviajes<=310){
+			viajes=pviajes;
+			Cantidad =0;
+		}
 	}
-	factura getVector(int i){
-		return vector[i];
-	}
-	void insertar(factura obj1){
-		vector[facturas].setCedula(obj1.getCedula());
-		vector[facturas].setPlatos(obj1.getPlatos());
-		vector[facturas].setFrescos(obj1.getFrescos());
-		vector[facturas].setHora(obj1.getHora());
-		setFacturas(facturas+1);
-	}
-		void mostrarDetalleViajes() {
-			cout<<"Ingrese el día que desea ver:"<<endl;
-			cin>>diaMes;
-			cout << "Detalle de viajes para el día " << diaMes << ":" << endl;
-			
-			for (const auto& viaje : viajes) {
-				if (viaje.diaMes == dia) {
-					cout << "Lugar de origen: " << viaje.lugarOrigen << endl;
-					cout << "Lugar de destino: " << viaje.lugarDestino << endl;
-					cout << "Hora de inicio: " << viaje.horaInicio << endl;
-					cout << "Hora de fin: " << viaje.horaFin << endl;
-					cout << "Litros consumidos: " << viaje.ltrConsumidos << endl;
-					cout << "Kilómetros recorridos: " << viaje.km << endl;
-					cout << "Monto cobrado: " << viaje.montoCobrado << endl;
-					cout << "Costos: " << viaje.costos << endl;
-					cout << endl;
-				}
+		viaje getVector(int i){
+			return vector [i];
+		}
+			void setCantidad(int can){
+				if((can<=viajes)&&(can>0) )
+					Cantidad=can;
 			}
-		}
-	string toString(int i){
-		stringstream s;
-		s <<endl <<endl
-			<<"--------------------------------------------"<<endl
-			<<endl<<endl<<"Las facturas de este mes son:"<<endl;
-		    for(int i=0;i<facturas; i++){
-			s<<"N de factura"<<i<<endl;
-			s<<vector[i].toString();}
-			s<<"--------------------------------------------";
-			s<<endl<<endl;
-		return s.str();
-	}
-	float totalVenta(int i){
-		for(int i=0; i>=facturas;i++){
-			return facturas+=vector[i].total();
-		}
-	}
-	/*float totalPlatos(){
-		
-	}*/
-	
+				int getViajes(){
+					return viajes;
+				}
+					int getCantidad(){
+						return Cantidad;
+					}
+						/*~coleccion(){//destructor
+						}*/
+						
+						void insertar(viaje v1){
+							if(Cantidad<viajes){
+								vector[Cantidad].setHoraFin(v1.getHoraFin());
+								vector[Cantidad].setHoraInicio(v1.getHoraInicio());
+								vector[Cantidad].setLtrConsumidos(v1.setLtrConsumidos());
+								vector[Cantidad].setDiaMes(v1.getDiaMes());
+								vector[Cantidad].setKm(v1.getKm());
+								vector[Cantidad].setLugarDestino(v1.getLugarDestino());
+								vector[Cantidad].setLugarOrigen(v1.getLugarOrigen());
+								setCantidad(Cantidad+1 );
+							}
+						}
+							
+							
+							string toString(int i){
+								stringstream s;
+								s<<endl<<endl;
+								s<<"--------------------------------------------------";
+								s<<endl<<endl<<"Las facturas de este mes son:"<<endl;
+								for (int i=0; i<Cantidad; i++){
+									s<<"N° factura: "<< i<<endl;
+									s<<vector[i].toString();
+									s<<endl<<endl;
+								}
+								return s.str();
+							}
+								/*insertarFactura(){
+									
+								}
+								totalVenta(){
+								}
+								gananciaObtenida(){ //promedio paso 3
+									
+								}*/
+
 };
+
+
+
+
+
+
+
 #endif
