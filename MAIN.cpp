@@ -12,7 +12,7 @@ int main() {
 	float horaFin, horaInicio,km;
 	string lugarOrigen, lugarDestino;
 	int opcion;
-	
+	setlocale(LC_ALL, "es_ES");
 	do {
 		
 		cout << "----- MotoUVer -----" << endl;
